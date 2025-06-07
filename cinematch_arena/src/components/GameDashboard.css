@@ -1,0 +1,84 @@
+.dashboard-container {
+  padding: 44px 0 24px 0;
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dashboard-columns-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  width: 100%;
+}
+
+.dashboard-column {
+  flex: 1;
+  background: #17174f;
+  border-radius: 0 0 10px 10px;
+  margin: 0 1.5rem 0 1.5rem;
+  padding: 18px 12px 28px 12px;
+  min-width: 0;
+  min-height: 460px;
+  box-shadow: 0 6px 50px rgba(12,12,24,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hollywood-title {
+  color: #36b8ff;
+}
+.kollywood-title {
+  color: #1bab18;
+}
+
+.dashboard-note {
+  margin: 30px 0 15px 0;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.column-title {
+  font-size: 1.95rem;
+  font-weight: 900;
+  margin-bottom: 2px;
+  letter-spacing: 1px;
+}
+.column-desc {
+  margin-bottom: 13px;
+  margin-top: 0;
+  font-size: 1.04rem;
+  color: var(--base-light);
+}
+
+.columns-divider {
+  width: 7px;
+  background: linear-gradient(180deg,#25e2ffb7 45%, #1bab1877 55%);
+  border-radius: 7px;
+  margin: 0 6px 0 6px;
+  min-height: 430px;
+  align-self: stretch;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-columns-wrap {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .columns-divider {
+    display: none;
+  }
+  .dashboard-column {
+    margin: 0 0 1.5rem 0;
+    min-height: 300px;
+  }
+}
+.game-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}

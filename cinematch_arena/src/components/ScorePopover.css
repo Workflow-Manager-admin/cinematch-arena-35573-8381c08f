@@ -1,0 +1,66 @@
+.score-popover-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 3000;
+  background: rgba(17, 23, 31, 0.48);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-popover {
+  background: #173150;
+  color: #f9f9fa;
+  min-width: 340px;
+  max-width: 96vw;
+  min-height: 140px;
+  border: 1.6px solid #26caed;
+  border-radius: 13px;
+  padding: 18px 22px 16px 22px;
+  box-shadow: 0 5px 24px 1px #00c2ff32;
+  position: relative;
+}
+
+.score-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.23rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.close-btn {
+  background: none;
+  color: #c3c9e9;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.score-table {
+  margin-top: 9px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.score-table th {
+  color: #25e2ff;
+  font-weight: 600;
+  border-bottom: 1.4px solid #0ad5b9;
+  padding-bottom: 3px;
+}
+.score-table td {
+  padding: 2.5px 6px;
+  border-bottom: 1px solid #243c5a66;
+  color: #e5f8fb;
+  text-align: center;
+}
+
+.score-empty {
+  color: #aaa;
+  margin: 15px 0 5px 0;
+  text-align: center;
+  font-size: 1.1rem;
+}
