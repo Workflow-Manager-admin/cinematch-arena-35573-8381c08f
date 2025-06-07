@@ -350,12 +350,16 @@ function GameDashboard({ user, onScore, scoreHistory }) {
               key={"holly-" + game.key}
               column="Hollywood"
               game={game}
+              // Pass only Hollywood movies for the Hollywood card
+              movies={movieData.hollywood}
               onPlay={() => onPlay(game.key, "Hollywood")}
             />
             <GameCard
               key={"kolly-" + game.key}
               column="Kollywood"
               game={game}
+              // Pass only Kollywood movies for the Kollywood card
+              movies={movieData.kollywood}
               onPlay={() => onPlay(game.key, "Kollywood")}
             />
           </div>
