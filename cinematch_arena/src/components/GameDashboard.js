@@ -95,19 +95,20 @@ function GameDashboard({ user, onScore, scoreHistory }) {
       fetchPopularKollywoodMovies(1),
     ])
       .then(([holly, kolly]) => {
-        // Strictly exclude Hollywood, dubbed and non-Tamil movies from Kollywood
-        const filteredKollywood =
-          kolly && kolly.results
-            ? kolly.results.filter(
-                (m) =>
-                  m.original_language === "ta" &&
-                  (!m.title || !/dubbed/i.test(m.title)) && // crude extra filter
-                  (m.origin_country?.includes("IN") || m.original_language === "ta")
-              )
-            : [];
+        // Robust filtering for Kollywood: only Tamil originals, region=IN, no dubbed/English
+        // This applies strict client-side filtering to cover any TMDB API imperfections
+        const strictlyTamilKollywood = (kolly && Array.isArray(kolly.results) ? kolly.results : []).filter(
+          (movie) =>
+            movie &&
+            movie.original_language === "ta" &&
+            (movie.origin_country && movie.origin_country.includes("IN")) &&
+            (!movie.title || !/dubbed/i.test(movie.title)) &&
+            (!movie.overview || !/dubbed/i.test(movie.overview)) &&
+            (!movie.original_title || !/english|dubbed|eng|with english/i.test(movie.original_title))
+        );
         setMovieData({
           hollywood: holly && holly.results ? holly.results : [],
-          kollywood: filteredKollywood,
+          kollywood: strictlyTamilKollywood,
           loaded: true,
           loading: false,
           error: null,

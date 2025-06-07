@@ -65,32 +65,40 @@ export async function fetchPopularHollywoodMovies(page = 1) {
 }
 
 /**
- * Fetches popular Kollywood movies (India region, ONLY Tamil originals).
+ * Fetches popular Kollywood movies (India region, ONLY authentic Tamil originals).
  * Uses TMDB's discover API to strictly ensure original_language=ta.
- * Filters out anything that is not a true Tamil (Kollywood) movie.
+ * Double-filters to prevent accidental inclusion of English/dubbed content.
  * @param {number} page - Result page for pagination.
  * @returns {Promise<object>} List of authentic Kollywood (Tamil) movies.
  */
 // PUBLIC_INTERFACE
 export async function fetchPopularKollywoodMovies(page = 1) {
-  // Use /discover/movie: original_language=ta to ensure only Tamil original movies.
-  // region=IN further biases result to Indian releases.
+  // Use /discover/movie: original_language=ta, region=IN, sort by popularity, lang ta-IN for metadata
   const data = await fetchFromTMDB("/discover/movie", {
     page,
     region: "IN",
     sort_by: "popularity.desc",
     with_original_language: "ta",
+    // TMDB's behavior: language parameter affects result metadata NOT filtering
     language: "ta-IN",
   });
-  // Final filter: TMDB should already apply 'with_original_language', but double check
+  // Robust client-side filter:
+  // 1. Only original_language === "ta"
+  // 2. Not "dubbed" in title or overview
+  // 3. origin_country must include "IN"
+  // 4. Exclude English/dubbed/otherwise inappropriate results
   const authenticTamil = {
     ...data,
     results: (data.results || []).filter(
       (movie) =>
+        movie &&
         movie.original_language === "ta" &&
+        (movie.origin_country && movie.origin_country.includes("IN")) &&
+        // Exclude "dubbed" keyword (case-insensitive) in title or overview
         (!movie.title || !/dubbed/i.test(movie.title)) &&
-        movie.origin_country &&
-        (movie.origin_country.includes("IN") || movie.original_language === "ta")
+        (!movie.overview || !/dubbed/i.test(movie.overview)) &&
+        // Exclude if there is obvious sign of non-Tamil/English, as a safeguard:
+        (!movie.original_title || !/english|dubbed|eng|with english/i.test(movie.original_title))
     ),
   };
   return authenticTamil;
