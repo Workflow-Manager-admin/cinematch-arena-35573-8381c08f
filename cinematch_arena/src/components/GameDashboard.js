@@ -44,8 +44,8 @@ const GAMES = [
 
 // PUBLIC_INTERFACE
 /**
- * Main dashboard: visual two-column split for Hollywood and Kollywood.
- * Each has same set of games; cards invoke game stubs/demos.
+ * Main dashboard: single-row-per-game, each row contains Hollywood (left) and Kollywood (right) of the same game.
+ * Modern, responsive horizontal alignment.
  */
 function GameDashboard({ user, onScore, scoreHistory }) {
   const onPlay = (gameKey, column) => {
@@ -65,44 +65,40 @@ function GameDashboard({ user, onScore, scoreHistory }) {
 
   return (
     <div className="dashboard-container">
-      <div className="dashboard-columns-wrap">
-        <section className="dashboard-column hollywood">
-          <h2 className="column-title hollywood-title">
-            Hollywood <span role="img" aria-label="usa">🇺🇸</span>
-          </h2>
-          <p className="column-desc">
-            Hollywood games with the latest from TheMovieDB.
-          </p>
-          <div className="game-cards">
-            {GAMES.map((game) => (
-              <GameCard
-                key={"holly-" + game.key}
-                column="Hollywood"
-                game={game}
-                onPlay={() => onPlay(game.key, "Hollywood")}
-              />
-            ))}
+      <div className="dashboard-titles-row">
+        <div className="dashboard-generic-col-title hollywood-title">
+          Hollywood <span role="img" aria-label="usa">🇺🇸</span>
+        </div>
+        <div className="dashboard-generic-col-title kollywood-title">
+          Kollywood <span role="img" aria-label="india">🇮🇳</span>
+        </div>
+      </div>
+      <div className="dashboard-desc-row">
+        <div className="dashboard-generic-col-desc">
+          Hollywood games with the latest from TheMovieDB.
+        </div>
+        <div className="dashboard-generic-col-desc">
+          Kollywood games — experience Tamil cinema content!
+        </div>
+      </div>
+      <div className="dashboard-game-pair-wrap">
+        {GAMES.map((game) => (
+          <div key={game.key} className="dashboard-game-pair-row">
+            <GameCard
+              key={"holly-" + game.key}
+              column="Hollywood"
+              game={game}
+              onPlay={() => onPlay(game.key, "Hollywood")}
+            />
+            <div className="gamecard-row-divider" />
+            <GameCard
+              key={"kolly-" + game.key}
+              column="Kollywood"
+              game={game}
+              onPlay={() => onPlay(game.key, "Kollywood")}
+            />
           </div>
-        </section>
-        <div className="columns-divider" />
-        <section className="dashboard-column kollywood">
-          <h2 className="column-title kollywood-title">
-            Kollywood <span role="img" aria-label="india">🇮🇳</span>
-          </h2>
-          <p className="column-desc">
-            Kollywood games — experience Tamil cinema content!
-          </p>
-          <div className="game-cards">
-            {GAMES.map((game) => (
-              <GameCard
-                key={"kolly-" + game.key}
-                column="Kollywood"
-                game={game}
-                onPlay={() => onPlay(game.key, "Kollywood")}
-              />
-            ))}
-          </div>
-        </section>
+        ))}
       </div>
       <div className="dashboard-note">
         <span>
