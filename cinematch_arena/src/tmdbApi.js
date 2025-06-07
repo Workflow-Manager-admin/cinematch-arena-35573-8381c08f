@@ -1,4 +1,4 @@
-//
+// 
 // TheMovieDB API utility for CineMatch Arena
 //
 // WARNING: The TMDB API key is hardcoded below per explicit user/demo instructions.
@@ -8,7 +8,6 @@
 // This utility handles all networking to TheMovieDB using the v3 REST API.
 // This is for DEMO/POC purposes ONLY. In real apps, always store secrets securely.
 //
-
 // !!! DEMO ONLY: API key directly embedded as required by assignment.
 const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
 const DEMO_TMDB_API_KEY = "5bc67d3b06aecbd18121a3cbbc16eb59";
@@ -112,4 +111,52 @@ export async function fetchPopularKollywoodMovies(page = 1) {
 // PUBLIC_INTERFACE
 export async function fetchMovieDetails(movieId, language = "en-US") {
   return fetchFromTMDB(`/movie/${movieId}`, { language });
+}
+
+/**
+ * Fetch full credits (cast/crew) for a movie
+ * @param {number|string} movieId - TMDB movie ID
+ * @returns {Promise<object>} with { cast, crew } arrays
+ */
+// PUBLIC_INTERFACE
+export async function fetchMovieCredits(movieId) {
+  return fetchFromTMDB(`/movie/${movieId}/credits`);
+}
+
+/**
+ * Fetches the credits (movies an actor has been in) for the given person_id.
+ * @param {number|string} personId
+ * @returns {Promise<object>} with { cast, crew } arrays
+ */
+// PUBLIC_INTERFACE
+export async function fetchPersonCredits(personId) {
+  return fetchFromTMDB(`/person/${personId}/movie_credits`);
+}
+
+/**
+ * Find TMDB person by name (for six degrees game)
+ * NOTE: Returns search results, may require user pick
+ * @param {string} name - Person (actor) name
+ * @returns {Promise<object>} with array of matching people
+ */
+// PUBLIC_INTERFACE
+export async function searchPersonByName(name) {
+  return fetchFromTMDB("/search/person", { query: name, language: "en-US" });
+}
+
+/**
+ * Example: fetch a batch of Hollywood/Kollywood movies by keywords.
+ * (Used for extra randomization in some games)
+ * @param {string} keywords - TMDB keyword(s) as string, comma-separated
+ * @param {number} page
+ */
+// PUBLIC_INTERFACE
+export async function discoverMoviesByKeywords({ keywords, region, language = "en-US", page = 1 }) {
+  return fetchFromTMDB("/discover/movie", {
+    sort_by: "popularity.desc",
+    page,
+    with_keywords: keywords,
+    region,
+    language,
+  });
 }
