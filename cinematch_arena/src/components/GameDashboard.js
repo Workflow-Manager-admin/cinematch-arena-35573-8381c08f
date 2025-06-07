@@ -90,7 +90,7 @@ function GameDashboard({ user, onScore, scoreHistory }) {
               game={game}
               onPlay={() => onPlay(game.key, "Hollywood")}
             />
-            <div className="gamecard-row-divider" />
+            {/* Subtle visual separation provided via spacing, color, and card shadow - divider removed for modern look */}
             <GameCard
               key={"kolly-" + game.key}
               column="Kollywood"
