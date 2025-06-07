@@ -2,9 +2,9 @@
 > react-kavia@0.1.0 start
 > react-scripts start
 
-(node:10733) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:12054) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:10733) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:12054) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Compiled successfully!
@@ -19,22 +19,168 @@ To create a production build, use npm run build.
 
 webpack compiled successfully
 Compiling...
-Compiled successfully!
-webpack compiled successfully
-Compiling...
-Compiled with warnings.
+Failed to compile.
 
 [eslint] 
-src/components/GameDashboard.js
-  Line 7:3:     'fetchMovieDetails' is defined but never used  no-unused-vars
-  Line 153:11:  'industry' is assigned a value but never used  no-unused-vars
+src/tmdbApi.js
+  Line 52:8:  'TMDB_API_BASE_URL' is not defined  no-undef
 
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
+Search for the keywords to learn more about each error.
+ERROR in [eslint] 
+src/tmdbApi.js
+  Line 52:8:  'TMDB_API_BASE_URL' is not defined  no-undef
 
-WARNING in [eslint] 
-src/components/GameDashboard.js
-  Line 7:3:     'fetchMovieDetails' is defined but never used  no-unused-vars
-  Line 153:11:  'industry' is assigned a value but never used  no-unused-vars
+Search for the keywords to learn more about each error.
 
-webpack compiled with 1 warning
+webpack compiled with 1 error
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/tmdbApi.js
+  Line 44:8:   'TMDB_API_BASE_URL' is not defined  no-undef
+  Line 45:41:  'DEMO_TMDB_API_KEY' is not defined  no-undef
+
+Search for the keywords to learn more about each error.
+ERROR in [eslint] 
+src/tmdbApi.js
+  Line 44:8:   'TMDB_API_BASE_URL' is not defined  no-undef
+  Line 45:41:  'DEMO_TMDB_API_KEY' is not defined  no-undef
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/tmdbApi.js
+Syntax error: Identifier 'TMDB_API_BASE_URL' has already been declared. (17:6) (17:6)
+ERROR in ./src/tmdbApi.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/src/tmdbApi.js: Identifier 'TMDB_API_BASE_URL' has already been declared. (17:6)
+
+  15 | const DEMO_TMDB_API_KEY = "5bc67d3b06aecbd18121a3cbbc16eb59";
+  16 |
+> 17 | const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
+     |       ^
+  18 |
+  19 | // !!! DEMO ONLY: API key is directly embedded per instructions.
+  20 | // This key is valid for demo/testing purposes ONLY.
+    at constructor (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:360:19)
+    at FlowParserMixin.raise (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:3327:19)
+    at FlowScopeHandler.checkRedeclarationInScope (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:1555:19)
+    at FlowScopeHandler.declareName (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:1521:12)
+    at FlowScopeHandler.declareName (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:1622:11)
+    at FlowParserMixin.declareNameFromIdentifier (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:7476:16)
+    at FlowParserMixin.checkIdentifier (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:7472:12)
+    at FlowParserMixin.checkLVal (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:7413:12)
+    at FlowParserMixin.parseVarId (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:13052:10)
+    at FlowParserMixin.parseVarId (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:5698:11)
+    at FlowParserMixin.parseVar (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:13027:12)
+    at FlowParserMixin.parseVarStatement (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12874:10)
+    at FlowParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12489:23)
+    at FlowParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12406:17)
+    at FlowParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:5140:24)
+    at FlowParserMixin.parseModuleItem (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12383:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12960:36)
+    at FlowParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12953:10)
+    at FlowParserMixin.parseProgram (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12280:10)
+    at FlowParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12270:25)
+    at FlowParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:5909:28)
+    at FlowParserMixin.parse (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:14120:10)
+    at parse (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:14154:38)
+    at parser (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/gensync/index.js:261:32)
+    at /home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/gensync/index.js:223:11)
+
+ERROR in [eslint] 
+src/tmdbApi.js
+  Line 17:6:  Parsing error: Identifier 'TMDB_API_BASE_URL' has already been declared. (17:6)
+
+webpack compiled with 2 errors
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/tmdbApi.js
+Syntax error: Identifier 'DEMO_TMDB_API_KEY' has already been declared. (22:6) (22:6)
+ERROR in ./src/tmdbApi.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/src/tmdbApi.js: Identifier 'DEMO_TMDB_API_KEY' has already been declared. (22:6)
+
+  20 | // This key is valid for demo/testing purposes ONLY.
+  21 | // Never expose real API keys in client-side source for production.
+> 22 | const DEMO_TMDB_API_KEY = "5bc67d3b06aecbd18121a3cbbc16eb59";
+     |       ^
+  23 |
+  24 | /**
+  25 |  * Builds a query string from params object.
+    at constructor (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:360:19)
+    at FlowParserMixin.raise (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:3327:19)
+    at FlowScopeHandler.checkRedeclarationInScope (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:1555:19)
+    at FlowScopeHandler.declareName (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:1521:12)
+    at FlowScopeHandler.declareName (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:1622:11)
+    at FlowParserMixin.declareNameFromIdentifier (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:7476:16)
+    at FlowParserMixin.checkIdentifier (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:7472:12)
+    at FlowParserMixin.checkLVal (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:7413:12)
+    at FlowParserMixin.parseVarId (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:13052:10)
+    at FlowParserMixin.parseVarId (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:5698:11)
+    at FlowParserMixin.parseVar (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:13027:12)
+    at FlowParserMixin.parseVarStatement (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12874:10)
+    at FlowParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12489:23)
+    at FlowParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12406:17)
+    at FlowParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:5140:24)
+    at FlowParserMixin.parseModuleItem (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12383:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12960:36)
+    at FlowParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12953:10)
+    at FlowParserMixin.parseProgram (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12280:10)
+    at FlowParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:12270:25)
+    at FlowParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:5909:28)
+    at FlowParserMixin.parse (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:14120:10)
+    at parse (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/parser/lib/index.js:14154:38)
+    at parser (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/gensync/index.js:261:32)
+    at /home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/kavia/workspace/code-generation/cinematch-arena-35573-8381c08f/cinematch_arena/node_modules/gensync/index.js:223:11)
+
+ERROR in [eslint] 
+src/tmdbApi.js
+  Line 22:6:  Parsing error: Identifier 'DEMO_TMDB_API_KEY' has already been declared. (22:6)
+
+webpack compiled with 2 errors
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/tmdbApi.js
+  Line 51:8:   'TMDB_API_BASE_URL' is not defined  no-undef
+  Line 52:41:  'DEMO_TMDB_API_KEY' is not defined  no-undef
+
+Search for the keywords to learn more about each error.
+ERROR in [eslint] 
+src/tmdbApi.js
+  Line 51:8:   'TMDB_API_BASE_URL' is not defined  no-undef
+  Line 52:41:  'DEMO_TMDB_API_KEY' is not defined  no-undef
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error
+Compiling...
+Compiled successfully!
+webpack compiled successfully

@@ -1,26 +1,17 @@
 //
 // TheMovieDB API utility for CineMatch Arena
 //
+// WARNING: The TMDB API key is hardcoded below per explicit user/demo instructions.
+// DO NOT use this approach in production: expose API keys only via secured backend/services!
+// ------------------------------------------------------
+//
 // This utility handles all networking to TheMovieDB using the v3 REST API.
-// It expects REACT_APP_TMDB_API_KEY in the environment for API authentication.
-// DO NOT hardcode the API key directly into source code or commit it to the repo.
+// This is for DEMO/POC purposes ONLY. In real apps, always store secrets securely.
 //
 
+// !!! DEMO ONLY: API key directly embedded as required by assignment.
 const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
-
-/**
- * Returns the TMDB API key from the environment, or logs an error if missing.
- * @returns {string} The TMDB API key.
- */
-function getApiKey() {
-  // PUBLIC_INTERFACE
-  const apiKey = process.env.REACT_APP_TMDB_API_KEY;
-  if (!apiKey) {
-    console.error("TMDB API key missing! Please set REACT_APP_TMDB_API_KEY in your environment.");
-    throw new Error("TMDB API key is required");
-  }
-  return apiKey;
-}
+const DEMO_TMDB_API_KEY = "5bc67d3b06aecbd18121a3cbbc16eb59";
 
 /**
  * Builds a query string from params object.
@@ -39,17 +30,17 @@ function toQueryString(params) {
 }
 
 /**
- * Core fetcher to TMDB API.
+ * Core fetcher to TMDB API using the explicit DEMO API key.
  * @param {string} endpoint - The API endpoint after /3
  * @param {object} params - Query params (object)
  * @returns {Promise<object>} The API response data
  */
+// PUBLIC_INTERFACE
 async function fetchFromTMDB(endpoint, params = {}) {
-  // PUBLIC_INTERFACE
-  const apiKey = getApiKey();
+  // Key is injected into all requests (demo only!)
   const url =
     `${TMDB_API_BASE_URL}${endpoint}` +
-    toQueryString({ ...params, api_key: apiKey });
+    toQueryString({ ...params, api_key: DEMO_TMDB_API_KEY });
 
   const res = await fetch(url);
   if (!res.ok) {
@@ -63,8 +54,8 @@ async function fetchFromTMDB(endpoint, params = {}) {
  * @param {number} page - Result page for pagination.
  * @returns {Promise<object>} List of popular Hollywood movies.
  */
+// PUBLIC_INTERFACE
 export async function fetchPopularHollywoodMovies(page = 1) {
-  // PUBLIC_INTERFACE
   // US region & English language
   return fetchFromTMDB("/movie/popular", {
     page,
@@ -78,11 +69,10 @@ export async function fetchPopularHollywoodMovies(page = 1) {
  * @param {number} page - Result page for pagination.
  * @returns {Promise<object>} List of popular Kollywood movies.
  */
+// PUBLIC_INTERFACE
 export async function fetchPopularKollywoodMovies(page = 1) {
-  // PUBLIC_INTERFACE
   // India region, Tamil language ("ta-IN").
-  // Kollywood is mainly Tamil cinema. There is no official "Kollywood" filter,
-  // but this fetches popular movies in Tamil language from India.
+  // This fetches popular movies in Tamil language from India.
   return fetchFromTMDB("/movie/popular", {
     page,
     region: "IN",
@@ -95,7 +85,7 @@ export async function fetchPopularKollywoodMovies(page = 1) {
  * @param {number|string} movieId - TMDB movie ID
  * @param {string} language - Language (e.g. 'en-US')
  */
+// PUBLIC_INTERFACE
 export async function fetchMovieDetails(movieId, language = "en-US") {
-  // PUBLIC_INTERFACE
   return fetchFromTMDB(`/movie/${movieId}`, { language });
 }
