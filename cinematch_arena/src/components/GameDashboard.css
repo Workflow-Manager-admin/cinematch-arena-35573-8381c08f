@@ -1,29 +1,46 @@
 .dashboard-container {
   padding: 44px 0 24px 0;
-  max-width: 1080px;
+  max-width: 1150px;
   margin: 0 auto;
   width: 100%;
 }
 
+/* Main columns wrapper: show columns side-by-side */
 .dashboard-columns-wrap {
   display: flex;
   flex-direction: row;
-  gap: 0;
   width: 100%;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  position: relative;
 }
 
+/* Each column appearance */
 .dashboard-column {
-  flex: 1;
+  flex: 1 1 0;
   background: #17174f;
-  border-radius: 0 0 10px 10px;
-  margin: 0 1.5rem 0 1.5rem;
-  padding: 18px 12px 28px 12px;
+  border-radius: 0 0 16px 16px;
+  margin: 0 1.2rem;
+  padding: 26px 18px 32px 18px;
   min-width: 0;
-  min-height: 460px;
-  box-shadow: 0 6px 50px rgba(12,12,24,0.2);
+  min-height: 470px;
+  box-shadow: 0 4px 44px rgba(12,12,24,0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: box-shadow 0.18s;
+  position: relative;
+}
+
+.dashboard-column.hollywood {
+  border-right: none;
+  z-index: 2;
+}
+
+.dashboard-column.kollywood {
+  border-left: none;
+  z-index: 2;
 }
 
 .hollywood-title {
@@ -53,27 +70,49 @@
   color: var(--base-light);
 }
 
+/* Vertical divider between columns (desktop only) */
 .columns-divider {
-  width: 7px;
-  background: linear-gradient(180deg,#25e2ffb7 45%, #1bab1877 55%);
-  border-radius: 7px;
-  margin: 0 6px 0 6px;
-  min-height: 430px;
+  width: 2.5px;
+  min-width: 2.5px;
+  max-width: 16px;
+  background: linear-gradient(180deg, #25e2ffb7 40%, #1bab1899 60%);
+  box-shadow: 0 0 18px 2px #00e1ff15;
+  border-radius: 6px;
+  margin: 0 0.5rem;
   align-self: stretch;
+  opacity: 0.92;
+  transition: background 0.15s;
+  position: relative;
+  z-index: 1;
+}
+
+/* Add some gap above/below divider if not enough space */
+@media (min-width: 1100px) {
+  .columns-divider {
+    min-height: 520px;
+  }
 }
 
 @media (max-width: 1024px) {
+  .dashboard-container {
+    padding: 30px 0 18px 0;
+    max-width: 98vw;
+  }
   .dashboard-columns-wrap {
     flex-direction: column;
-    gap: 12px;
+    gap: 18px;
     align-items: stretch;
+    justify-content: flex-start;
   }
   .columns-divider {
     display: none;
   }
   .dashboard-column {
-    margin: 0 0 1.5rem 0;
-    min-height: 300px;
+    margin: 0 0 1.6rem 0;
+    border-radius: 12px;
+    min-height: 285px;
+    box-shadow: 0 2px 16px rgba(0,183,255,0.11);
+    padding: 18px 8px 26px 8px;
   }
 }
 .game-cards {
@@ -81,4 +120,16 @@
   flex-direction: column;
   gap: 18px;
   width: 100%;
+}
+
+/* Visually separate left/right columns in desktop */
+@media (min-width: 1025px) {
+  .dashboard-column.hollywood {
+    border-right: 0.5px solid var(--border-color);
+    background: linear-gradient(114deg,rgba(23,23,79,1) 70%,rgba(54,184,255,0.05) 100%);
+  }
+  .dashboard-column.kollywood {
+    border-left: 0.5px solid var(--border-color);
+    background: linear-gradient(80deg,rgba(23,23,79,0.98) 65%, rgba(27,171,24,0.08) 100%);
+  }
 }
