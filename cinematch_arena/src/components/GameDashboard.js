@@ -95,9 +95,19 @@ function GameDashboard({ user, onScore, scoreHistory }) {
       fetchPopularKollywoodMovies(1),
     ])
       .then(([holly, kolly]) => {
+        // Strictly exclude Hollywood, dubbed and non-Tamil movies from Kollywood
+        const filteredKollywood =
+          kolly && kolly.results
+            ? kolly.results.filter(
+                (m) =>
+                  m.original_language === "ta" &&
+                  (!m.title || !/dubbed/i.test(m.title)) && // crude extra filter
+                  (m.origin_country?.includes("IN") || m.original_language === "ta")
+              )
+            : [];
         setMovieData({
           hollywood: holly && holly.results ? holly.results : [],
-          kollywood: kolly && kolly.results ? kolly.results : [],
+          kollywood: filteredKollywood,
           loaded: true,
           loading: false,
           error: null,

@@ -65,19 +65,35 @@ export async function fetchPopularHollywoodMovies(page = 1) {
 }
 
 /**
- * Fetches popular Kollywood movies (India region, Tamil language).
+ * Fetches popular Kollywood movies (India region, ONLY Tamil originals).
+ * Uses TMDB's discover API to strictly ensure original_language=ta.
+ * Filters out anything that is not a true Tamil (Kollywood) movie.
  * @param {number} page - Result page for pagination.
- * @returns {Promise<object>} List of popular Kollywood movies.
+ * @returns {Promise<object>} List of authentic Kollywood (Tamil) movies.
  */
 // PUBLIC_INTERFACE
 export async function fetchPopularKollywoodMovies(page = 1) {
-  // India region, Tamil language ("ta-IN").
-  // This fetches popular movies in Tamil language from India.
-  return fetchFromTMDB("/movie/popular", {
+  // Use /discover/movie: original_language=ta to ensure only Tamil original movies.
+  // region=IN further biases result to Indian releases.
+  const data = await fetchFromTMDB("/discover/movie", {
     page,
     region: "IN",
+    sort_by: "popularity.desc",
+    with_original_language: "ta",
     language: "ta-IN",
   });
+  // Final filter: TMDB should already apply 'with_original_language', but double check
+  const authenticTamil = {
+    ...data,
+    results: (data.results || []).filter(
+      (movie) =>
+        movie.original_language === "ta" &&
+        (!movie.title || !/dubbed/i.test(movie.title)) &&
+        movie.origin_country &&
+        (movie.origin_country.includes("IN") || movie.original_language === "ta")
+    ),
+  };
+  return authenticTamil;
 }
 
 /**
